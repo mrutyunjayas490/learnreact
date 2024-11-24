@@ -14,6 +14,12 @@ export default function TextForm(props) {
         setText(newText);
     }
 
+    const handleClearClick = ()=>{
+        //console.log("Uppercase was clicked: " + text);
+        let newText = '';
+        setText(newText);
+    }
+
     const handleOnChange = (event)=>{
         //console.log("OnChange");
         setText(event.target.value);
@@ -31,6 +37,7 @@ export default function TextForm(props) {
             </div>
             <button className ="btn btn-primary mx-2" onClick={handleUpClick}>Convert to Uppercase</button>
             <button className ="btn btn-primary mx-2" onClick={handleLoClick}>Convert to Lowercase</button>
+            <button className ="btn btn-primary mx-2" onClick={handleClearClick}>Clear Text</button>
     </div>
     <div className="container my-2">
         <h2>Your text summery</h2>
@@ -42,4 +49,5 @@ export default function TextForm(props) {
     </>
   )
 }
+
 //mx use to make distance in x-axis and my is use for y-axis
