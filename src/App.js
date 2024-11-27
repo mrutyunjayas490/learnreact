@@ -1,46 +1,62 @@
 import './App.css';
-import About from './components/About.js';
+//import About from './components/About.js';
 import Alert from './components/Alert.js';
-import Navbar from './components/Navbar.js'
-import TextForm from './components/TextForm.js'
-import React, {useState} from 'react';
+import Navbar from './components/Navbar.js';
+import TextForm from './components/TextForm.js';
+import React, { useState } from 'react';
+/*import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";*/
 
 function App() {
-  const [Mode, setMode] = useState('light');
+  const [Mode, setMode] = useState('light'); // Light mode by default
+  const [alert, setAlert] = useState(null); // State for alert
 
-  const[alert, setAlert] = useState(null);
-  const showAlert =(message, type)=>{
+  // Function to show alerts
+  const showAlert = (message, type) => {
     setAlert({
       msg: message,
       type: type
-    })
-    setTimeout(()=>{
+    });
+    setTimeout(() => {
       setAlert(null);
-    },1500);
-  }
+    }, 1500);
+  };
 
-  const toggleMode =()=>{
-    if(Mode ==='light'){
+  // Function to toggle between Light and Dark mode
+  const toggleMode = () => {
+    if (Mode === 'light') {
       setMode('dark');
-      document.body.style.backgroundColor = 'black';
-      showAlert("Dark mode has been enabled","success");
-    }
-    else{
+      document.body.style.backgroundColor = 'black'; // Set dark background
+      showAlert("Dark mode has been enabled", "success");
+    } else {
       setMode('light');
-      document.body.style.backgroundColor = 'light';
-      showAlert("Light mode has been enabled","success");
+      document.body.style.backgroundColor = 'white'; // Set light background
+      showAlert("Light mode has been enabled", "success");
     }
-  }
+  };
+
   return (
     <>
-    <Navbar title='TextUtils' aboutText='About TextUtils' mode={Mode} toggleMode={toggleMode} />
-    <Alert alert={alert}/>
-    <div className="container my-3">
-    <TextForm showAlert={showAlert} heading='Enter your text to analyze' mode={Mode}/>
-    <About mode={Mode}/>
-    </div>
-    </> //it's a stucture called js stucture <>every thing under this is a js file</>
-  );// here we return jxs file which is look like a html but it as a javascript 
+      {/*<Router>*/}
+        <Navbar title='TextUtils' aboutText='About TextUtils' mode={Mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <div className="container my-3">
+          {/* <Routes> */}
+            {/* About Page Route */}
+            {/* <Route exact path="/About" element={<About />} />
+
+            {/* Home Page Route */}
+            {/* <Route exact path="/" element={ */}
+              <TextForm showAlert={showAlert} heading='Enter your text to analyze' mode={Mode} />
+            {/* } />
+          </Routes> */}
+        </div>
+      {/* </Router> */}
+    </>
+  );
 }
 
 export default App;
